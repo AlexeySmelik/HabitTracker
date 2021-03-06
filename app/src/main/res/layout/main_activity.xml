@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="horizontal">
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listOfHabits"
+            android:layout_height="match_parent"
+            android:layout_width="287dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_habit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right|end"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/add_habbit"
+            android:src="@drawable/outline_addchart_black_48" android:layout_row="0" android:layout_column="1"
+            app:backgroundTint="@color/colorWhite"/>
+
+</GridLayout>
