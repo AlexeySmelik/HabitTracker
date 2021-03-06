@@ -22,7 +22,8 @@
             android:layout_marginTop="36dp"
             android:layout_height="27dp"
             android:layout_width="152dp"
-            app:layout_constraintHorizontal_bias="0.5"/>
+            app:layout_constraintHorizontal_bias="0.5"
+            android:gravity="center"/>
     <EditText
             android:id="@+id/title_edit"
             android:layout_width="304dp"
@@ -39,7 +40,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            android:layout_marginTop="50dp"/>
+            android:layout_marginTop="50dp"
+            android:gravity="center"/>
     <EditText
             android:id="@+id/description_edit"
             android:layout_width="304dp"
