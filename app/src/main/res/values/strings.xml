@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Habit tracker</string>
     <string name="submit">Submit</string>
-    <string name="add_habbit">add_habit</string>
+    <string name="add_habit">add_habit</string>
+    <string name="habit_name">Название</string>
+    <string name="title">Название</string>
+    <string name="description">Описание</string>
 </resources>

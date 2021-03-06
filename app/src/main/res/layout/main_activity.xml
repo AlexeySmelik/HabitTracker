@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="horizontal">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   android:orientation="horizontal">
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listOfHabits"
-            android:layout_height="match_parent"
-            android:layout_width="287dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-
+            android:layout_height="540dp"
+            android:layout_width="400dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.671"/>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_habit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right|end"
             android:layout_margin="16dp"
-            android:contentDescription="@string/add_habbit"
-            android:src="@drawable/outline_addchart_black_48" android:layout_row="0" android:layout_column="1"
-            app:backgroundTint="@color/colorWhite"/>
+            android:src="@drawable/outline_addchart_black_48"
+            app:backgroundTint="@color/colorWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-</GridLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,18 +9,13 @@ class MainActivity : AppCompatActivity() {
     companion object{
         const val TITLE: String = "title"
         const val DESC: String = "description"
-        const val PRIOR: String = "priority"
-        const val TYPE: String = "type"
-        const val PERIOD: String = "period"
-        const val COLOR: String = "color"
+        //const val PRIOR: String = "priority"
+        //const val TYPE: String = "type"
+        //const val PERIOD: String = "period"
+        //const val COLOR: String = "color"
     }
 
-    private var habits: MutableList<Note> = mutableListOf(
-        Note("Покурить кальян", " Самый забивной", " HIGH", " TODAY", " No", " Red"),
-        Note("Покурить кальян", " Самый забивной", " HIGH", " TODAY", " No", " Blue"),
-        Note("Покурить кальян", " Самый забивной", " HIGH", " TODAY", " No", " Green"),
-        Note("Покурить кальян", " Самый забивной", " HIGH", " TODAY", " No", " Yellow")
-    )
+    private var habits: MutableList<Note> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,22 +25,21 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, AddActivity::class.java)
             startActivityForResult(intent, 1)
         }
-    }
 
-    override fun onResume() {
-        super.onResume()
         listOfHabits.adapter = HabitsAdapter(habits)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        data?.getStringExtra(TITLE) ?: return
         habits.add(Note(
-            data?.getStringExtra(TITLE) ?: "Пустая заметка",
-            data?.getStringExtra(DESC) ?: "Пусто",
-            data?.getStringExtra(PRIOR) ?: "Medium",
-            data?.getStringExtra(TYPE) ?: "Empty",
-            data?.getStringExtra(PERIOD) ?: "-",
-            data?.getStringExtra(COLOR) ?: "Gray"
+            data?.getStringExtra(TITLE)!!,
+            data?.getStringExtra(DESC)!!,
+            //data?.getStringExtra(PRIOR) ?: "Medium",
+            //data?.getStringExtra(TYPE) ?: "Empty",
+            //data?.getStringExtra(PERIOD) ?: "-",
+            //data?.getStringExtra(COLOR) ?: "Gray"
         ))
+        listOfHabits.adapter = HabitsAdapter(habits)
     }
 }
