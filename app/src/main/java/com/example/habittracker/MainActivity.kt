@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
             data.getStringExtra(TITLE)!!,
             data.getStringExtra(DESC)!!,
             data.getStringExtra(PRIOR)!!,
+            data.getStringExtra(TYPE)!!,
             //data?.getStringExtra(PERIOD) ?: "-",
             //data?.getStringExtra(COLOR) ?: "Gray"
         ))
