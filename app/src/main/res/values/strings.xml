@@ -5,4 +5,13 @@
     <string name="habit_name">Название</string>
     <string name="title">Название</string>
     <string name="description">Описание</string>
+    <string name="priority">Приоритет привычки</string>
+    <string name="type">Тип привычки</string>
+    <string name="good_habit">Хорошая привычка</string>
+    <string name="bad_habit">Плохая привычка</string>
+    <string-array name="priorityRang">
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
+    </string-array>
 </resources>

@@ -9,8 +9,8 @@ class MainActivity : AppCompatActivity() {
     companion object{
         const val TITLE: String = "title"
         const val DESC: String = "description"
-        //const val PRIOR: String = "priority"
-        //const val TYPE: String = "type"
+        const val PRIOR: String = "priority"
+        const val TYPE: String = "type"
         //const val PERIOD: String = "period"
         //const val COLOR: String = "color"
     }
@@ -33,10 +33,9 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         data?.getStringExtra(TITLE) ?: return
         habits.add(Note(
-            data?.getStringExtra(TITLE)!!,
-            data?.getStringExtra(DESC)!!,
-            //data?.getStringExtra(PRIOR) ?: "Medium",
-            //data?.getStringExtra(TYPE) ?: "Empty",
+            data.getStringExtra(TITLE)!!,
+            data.getStringExtra(DESC)!!,
+            data.getStringExtra(PRIOR)!!,
             //data?.getStringExtra(PERIOD) ?: "-",
             //data?.getStringExtra(COLOR) ?: "Gray"
         ))
