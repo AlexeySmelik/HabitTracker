@@ -5,6 +5,6 @@ data class Note(
     var description: String,
     var priority: String,
     var type: String,
-    //var period: String,
-    //var color: String
+    var period: String,
+    var quantity: String,
     )

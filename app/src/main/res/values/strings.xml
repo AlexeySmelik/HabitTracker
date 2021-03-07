@@ -9,6 +9,10 @@
     <string name="type">Тип привычки</string>
     <string name="good_habit">Хорошая привычка</string>
     <string name="bad_habit">Плохая привычка</string>
+    <string name="periodText">Периодичность</string>
+    <string name="in">в</string>
+    <string name="days">дней</string>
+    <string name="repeat">Повторять</string>
     <string-array name="priorityRang">
         <item>Low</item>
         <item>Medium</item>

@@ -11,8 +11,8 @@ class MainActivity : AppCompatActivity() {
         const val DESC: String = "description"
         const val PRIOR: String = "priority"
         const val TYPE: String = "type"
-        //const val PERIOD: String = "period"
-        //const val COLOR: String = "color"
+        const val PERIOD: String = "period"
+        const val QUAN: String = "quantity"
     }
 
     private var habits: MutableList<Note> = mutableListOf()
@@ -37,8 +37,8 @@ class MainActivity : AppCompatActivity() {
             data.getStringExtra(DESC)!!,
             data.getStringExtra(PRIOR)!!,
             data.getStringExtra(TYPE)!!,
-            //data?.getStringExtra(PERIOD) ?: "-",
-            //data?.getStringExtra(COLOR) ?: "Gray"
+            data.getStringExtra(PERIOD)!!,
+            data.getStringExtra(QUAN)!!,
         ))
         listOfHabits.adapter = HabitsAdapter(habits)
     }

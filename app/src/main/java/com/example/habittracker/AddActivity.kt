@@ -11,14 +11,16 @@ class AddActivity : AppCompatActivity() {
         const val DESC: String = "description"
         const val PRIOR: String = "priority"
         const val TYPE: String = "type"
-        //const val PERIOD: String = "period"
-        //const val COLOR: String = "color"
+        const val PERIOD: String = "period"
+        const val QUAN: String = "quantity"
     }
 
     lateinit var title: String
     lateinit var description: String
     lateinit var priority: String
     private var habitType: String = "Хорошая привычка"
+    lateinit var quantity: String
+    lateinit var period: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,14 +32,17 @@ class AddActivity : AppCompatActivity() {
             description = description_edit.text.toString()
             priority = priority_spinner.selectedItem.toString()
             habitType = if (good_habit.isChecked) good_habit.text.toString() else bad_habit.text.toString()
+            period = period_edit.text.toString()
+            quantity = quantity_edit.text.toString()
 
             val backIntent = Intent().apply {
                 putExtra(TITLE, title)
                 putExtra(DESC, description)
                 putExtra(PRIOR, priority)
                 putExtra(TYPE, habitType)
-                //putExtra(PERIOD, "")
-                //putExtra(COLOR, "zopa")
+                putExtra(QUAN, quantity)
+                putExtra(PERIOD, period)
+                //putExtra(COLOR, "lol")
             }
             setResult(RESULT_OK, backIntent)
             finish()
