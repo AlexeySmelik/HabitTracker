@@ -3,17 +3,26 @@ package com.example.habittracker
 import androidx.lifecycle.ViewModel
 
 class MainActivityViewModel : ViewModel() {
-    private var habits: MutableList<Note> = mutableListOf()
+    private var habits: MutableList<Habit> = mutableListOf()
 
-    fun addHabit(note: Note){
-        habits.add(note)
+   private var positionToChangeHabit: Int = -1
+
+
+    fun addHabit(habit: Habit){
+        habits.add(habit)
     }
 
-    fun getHabits() : MutableList<Note> = habits
+    fun getHabits() : MutableList<Habit> = habits
 
-    fun changeHabit(note: Note, position: Int){
-        habits[position] = note
+    fun changeHabit(habit: Habit) {
+        habits[positionToChangeHabit] = habit
     }
 
-    fun getHabit(position: Int): Note = habits[position]
+    fun removeHabit() {
+        habits.removeAt(positionToChangeHabit)
+    }
+
+    fun setPositionToChangeHabit(position: Int) {
+        positionToChangeHabit = position
+    }
 }

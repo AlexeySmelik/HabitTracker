@@ -17,6 +17,7 @@
                   android:layout_marginEnd="25dp"
                   android:layout_marginStart="25dp"
                   android:background="@drawable/frame_for_list_item">
+
         <TextView android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:id="@+id/TitleView"
@@ -28,19 +29,17 @@
                   android:textSize="20sp"
                   android:text="Title"
                   android:background="@drawable/frame_for_list_item"/>
-        <!--scroll view does not work-->
-        <ScrollView android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="25dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="3dp"
-                    android:background="@drawable/frame_for_list_item">
-            <TextView android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:id="@+id/DescriptionView"
-                      android:text="Description"
-                      android:layout_margin="5dp"/>
-        </ScrollView>
+
+        <TextView android:layout_width="match_parent"
+                  android:id="@+id/DescriptionView"
+                  android:text="Description"
+                  android:layout_height="50dp"
+                  android:layout_marginEnd="25dp"
+                  android:layout_marginStart="25dp"
+                  android:layout_marginTop="3dp"
+                  android:padding="5dp"
+                  android:background="@drawable/frame_for_list_item"/>
+
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="match_parent"
                       android:layout_marginEnd="25dp"

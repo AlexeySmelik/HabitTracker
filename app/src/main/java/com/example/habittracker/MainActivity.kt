@@ -8,8 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.main_activity.*
+import kotlin.properties.Delegates
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnItemClickListener {
     companion object{
         const val TITLE: String = "title"
         const val DESC: String = "description"
@@ -20,9 +21,11 @@ class MainActivity : AppCompatActivity() {
         const val ACTION: String = "action"
         const val ADD: String = "add"
         const val CHANGE: String = "change"
+        const val CLICK: String = "LUCK"
     }
 
-    lateinit var viewModel: MainActivityViewModel
+    private lateinit var viewModel: MainActivityViewModel
+    private lateinit var adapter: HabitsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,33 +38,52 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        adapter = HabitsAdapter(viewModel.getHabits(), this)
 
-        listOfHabits.adapter = HabitsAdapter(this, viewModel.getHabits())
+        listOfHabits.adapter = adapter
     }
 
-    /*fun changeHabitOnClick(position: Int){
+    override fun onItemClicked(habit: Habit, position: Int) {
+        viewModel.setPositionToChangeHabit(position)
         val intent = Intent(this, AddActivity::class.java)
             .apply{
-                putExtra(MainActivity.ACTION, MainActivity.CHANGE)
-                putExtra(MainActivity.TITLE, viewModel.getHabit(position).title)
-                putExtra(MainActivity.DESC, viewModel.getHabit(position).description)
-                putExtra(MainActivity.TYPE, viewModel.getHabit(position).type)
-                putExtra(MainActivity.QUANTITY, viewModel.getHabit(position).quantity)
-                putExtra(MainActivity.PERIOD, viewModel.getHabit(position).period)
+                putExtra(ACTION, CHANGE)
+                putExtra(TITLE, habit.title)
+                putExtra(DESC, habit.description)
+                putExtra(TYPE, habit.type)
+                putExtra(PRIOR, habit.priority)
+                putExtra(QUANTITY, habit.quantity)
+                putExtra(PERIOD, habit.period)
             }
-        startActivityForResult(intent, 2)
-    }*/
+        Log.d(CLICK, "note on position num $position has been clicked")
+        startActivityForResult(intent, 1)
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (data?.getStringExtra(TITLE).isNullOrEmpty()) return
-        viewModel.addHabit(Note(
-            data?.getStringExtra(TITLE)!!,
-            data.getStringExtra(DESC)!!,
-            data.getStringExtra(PRIOR)!!,
-            data.getStringExtra(TYPE)!!,
-            data.getStringExtra(PERIOD)!!,
-            data.getStringExtra(QUANTITY)!!
-        ))
+        data ?: return
+        if (data.getStringExtra(ACTION) == ADD) {
+            if (data.getStringExtra(TITLE).isNullOrEmpty())
+                return
+            viewModel.addHabit(
+                Habit(data.getStringExtra(TITLE)!!,
+                    data.getStringExtra(DESC)!!,
+                    data.getStringExtra(PRIOR)!!,
+                    data.getStringExtra(TYPE)!!,
+                    data.getStringExtra(PERIOD)!!,
+                    data.getStringExtra(QUANTITY)!!))
+        } else {
+            if (data.getStringExtra(TITLE).isNullOrEmpty())
+                viewModel.removeHabit()
+            else
+                viewModel.changeHabit(
+                    Habit(data.getStringExtra(TITLE)!!,
+                        data.getStringExtra(DESC)!!,
+                        data.getStringExtra(PRIOR)!!,
+                        data.getStringExtra(TYPE)!!,
+                        data.getStringExtra(PERIOD)!!,
+                        data.getStringExtra(QUANTITY)!!))
+        }
+        adapter.notifyDataSetChanged()
     }
 }
