@@ -6,15 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.add_activity.*
 
 class AddActivity : AppCompatActivity() {
-    companion object{
-        const val TITLE: String = "title"
-        const val DESC: String = "description"
-        const val PRIOR: String = "priority"
-        const val TYPE: String = "type"
-        const val PERIOD: String = "period"
-        const val QUAN: String = "quantity"
-    }
-
     lateinit var title: String
     lateinit var description: String
     lateinit var priority: String
@@ -36,13 +27,12 @@ class AddActivity : AppCompatActivity() {
             quantity = quantity_edit.text.toString()
 
             val backIntent = Intent().apply {
-                putExtra(TITLE, title)
-                putExtra(DESC, description)
-                putExtra(PRIOR, priority)
-                putExtra(TYPE, habitType)
-                putExtra(QUAN, quantity)
-                putExtra(PERIOD, period)
-                //putExtra(COLOR, "lol")
+                putExtra(MainActivity.TITLE, title)
+                putExtra(MainActivity.DESC, description)
+                putExtra(MainActivity.PRIOR, priority)
+                putExtra(MainActivity.TYPE, habitType)
+                putExtra(MainActivity.QUAN, quantity)
+                putExtra(MainActivity.PERIOD, period)
             }
             setResult(RESULT_OK, backIntent)
             finish()

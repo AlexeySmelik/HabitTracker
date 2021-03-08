@@ -3,6 +3,7 @@ package com.example.habittracker
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : AppCompatActivity() {
@@ -15,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         const val QUAN: String = "quantity"
     }
 
-    private var habits: MutableList<Note> = mutableListOf()
+    private lateinit var viewModel: MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,20 +27,21 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(intent, 1)
         }
 
-        listOfHabits.adapter = HabitsAdapter(habits)
+        viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+
+        listOfHabits.adapter = HabitsAdapter(this, viewModel.getHabits())
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         data?.getStringExtra(TITLE) ?: return
-        habits.add(Note(
+        viewModel.addHabit(Note(
             data.getStringExtra(TITLE)!!,
             data.getStringExtra(DESC)!!,
             data.getStringExtra(PRIOR)!!,
             data.getStringExtra(TYPE)!!,
             data.getStringExtra(PERIOD)!!,
-            data.getStringExtra(QUAN)!!,
+            data.getStringExtra(QUAN)!!
         ))
-        listOfHabits.adapter = HabitsAdapter(habits)
     }
 }
