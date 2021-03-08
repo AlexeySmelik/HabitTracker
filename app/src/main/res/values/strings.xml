@@ -10,7 +10,7 @@
     <string name="good_habit">Хорошая привычка</string>
     <string name="bad_habit">Плохая привычка</string>
     <string name="periodText">Периодичность</string>
-    <string name="in">в</string>
+    <string name="in">раз в</string>
     <string name="days">дней</string>
     <string name="repeat">Повторять</string>
     <string-array name="priorityRang">

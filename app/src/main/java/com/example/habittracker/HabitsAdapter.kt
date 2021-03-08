@@ -14,6 +14,17 @@ class HabitsAdapter(private val myContext: Context, private var notes: MutableLi
 
     override fun onBindViewHolder(holderHabits: HabitsViewHolder, position: Int) {
         holderHabits.bind(notes[position])
+       /* holderHabits.itemView.setOnClickListener {
+            val intent = Intent(myContext, AddActivity::class.java)
+                .apply{
+                    putExtra(MainActivity.ACTION, MainActivity.CHANGE)
+                    putExtra(MainActivity.TITLE, notes[position].title)
+                    putExtra(MainActivity.DESC, notes[position].description)
+                    putExtra(MainActivity.TYPE, notes[position].type)
+                    putExtra(MainActivity.QUANTITY, notes[position].quantity)
+                    putExtra(MainActivity.PERIOD, notes[position].period)
+                }
+        }*/
     }
 
     override fun getItemCount(): Int = notes.size

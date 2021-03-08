@@ -41,7 +41,8 @@
                         android:id="@+id/title_edit"
                         android:layout_width="304dp"
                         android:layout_gravity="center"
-                        android:layout_height="54dp"/>
+                        android:layout_height="54dp"
+                        android:text=""/>
             </LinearLayout>
 
             <LinearLayout
@@ -143,7 +144,7 @@
                               android:layout_height="match_parent"
                               android:inputType="numberSigned"
                               android:id="@+id/quantity_edit"/>
-                    <TextView android:layout_width="10dp"
+                    <TextView android:layout_width="35dp"
                               android:layout_height="match_parent"
                               android:gravity="center"
                               android:text="@string/in"/>

@@ -10,4 +10,10 @@ class MainActivityViewModel : ViewModel() {
     }
 
     fun getHabits() : MutableList<Note> = habits
+
+    fun changeHabit(note: Note, position: Int){
+        habits[position] = note
+    }
+
+    fun getHabit(position: Int): Note = habits[position]
 }

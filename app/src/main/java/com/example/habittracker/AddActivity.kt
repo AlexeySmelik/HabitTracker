@@ -16,7 +16,21 @@ class AddActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_activity)
-        good_habit.isChecked = true
+
+        when(intent.getStringExtra(MainActivity.ACTION)) {
+            MainActivity.ADD -> good_habit.isChecked = true
+            MainActivity.CHANGE -> {
+                title_edit.setText(intent.getStringExtra(MainActivity.TITLE))
+                description_edit.setText(intent.getStringExtra(MainActivity.DESC))
+                //priority todo
+                when (intent.getStringExtra(MainActivity.TYPE)) {
+                    good_habit.text -> good_habit.isChecked = true
+                    bad_habit.text -> bad_habit.isChecked = true
+                }
+                period_edit.setText(intent.getStringExtra(MainActivity.PERIOD))
+                quantity_edit.setText(intent.getStringExtra(MainActivity.QUANTITY))
+            }
+        }
 
         submit_habit.setOnClickListener {
             title = title_edit.text.toString()
@@ -26,14 +40,16 @@ class AddActivity : AppCompatActivity() {
             period = period_edit.text.toString()
             quantity = quantity_edit.text.toString()
 
-            val backIntent = Intent().apply {
+            val backIntent = Intent()
+                .apply {
                 putExtra(MainActivity.TITLE, title)
                 putExtra(MainActivity.DESC, description)
                 putExtra(MainActivity.PRIOR, priority)
                 putExtra(MainActivity.TYPE, habitType)
-                putExtra(MainActivity.QUAN, quantity)
+                putExtra(MainActivity.QUANTITY, quantity)
                 putExtra(MainActivity.PERIOD, period)
             }
+
             setResult(RESULT_OK, backIntent)
             finish()
         }
