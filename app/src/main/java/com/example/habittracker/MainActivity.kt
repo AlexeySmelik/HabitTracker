@@ -54,9 +54,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        data?.getStringExtra(TITLE) ?: return
+        if (data?.getStringExtra(TITLE).isNullOrEmpty()) return
         viewModel.addHabit(Note(
-            data.getStringExtra(TITLE)!!,
+            data?.getStringExtra(TITLE)!!,
             data.getStringExtra(DESC)!!,
             data.getStringExtra(PRIOR)!!,
             data.getStringExtra(TYPE)!!,
