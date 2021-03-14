@@ -4,6 +4,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="12dp"
         android:orientation="horizontal"
         android:id="@+id/habit">
     <LinearLayout android:layout_width="match_parent"
@@ -52,13 +54,12 @@
                       android:textColor="@color/colorBlackGray"
                       android:textSize="15sp"
                       android:padding="5dp"/>
-            <TextView android:layout_width="match_parent"
+            <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:id="@+id/PriorityView"
                       android:text="Priority"
                       android:textColor="@color/colorBlackGray"
-                      android:textSize="15sp"
-                      android:padding="5dp"/>
+                      android:textSize="15sp"/>
         </LinearLayout>
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="match_parent"
@@ -70,13 +71,12 @@
                       android:textColor="@color/colorBlackGray"
                       android:textSize="15sp"
                       android:padding="5dp"/>
-            <TextView android:layout_width="match_parent"
+            <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:id="@+id/TypeView"
                       android:text="Type"
                       android:textColor="@color/colorBlackGray"
-                      android:textSize="15sp"
-                      android:padding="5dp"/>
+                      android:textSize="15sp"/>
         </LinearLayout>
 
         <LinearLayout android:layout_width="match_parent"
@@ -91,13 +91,12 @@
                       android:textColor="@color/colorBlackGray"
                       android:textSize="15sp"
                       android:padding="5dp"/>
-            <TextView android:layout_width="match_parent"
+            <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:id="@+id/FrequencyView"
                       android:text="Frequency"
                       android:textColor="@color/colorBlackGray"
-                      android:textSize="15sp"
-                      android:padding="5dp"/>
+                      android:textSize="15sp"/>
         </LinearLayout>
 
     </LinearLayout>

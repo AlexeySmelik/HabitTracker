@@ -2,10 +2,19 @@ package com.example.habittracker
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.iterator
+import androidx.core.view.marginBottom
 import kotlinx.android.synthetic.main.add_activity.*
 
+@Suppress("DEPRECATION")
 class AddActivity : AppCompatActivity() {
+    companion object {
+        const val SIZE_TAG: String = "TEL'S WIDTH"
+    }
+
     lateinit var title: String
     lateinit var description: String
     lateinit var priority: String
@@ -31,9 +40,9 @@ class AddActivity : AppCompatActivity() {
                 title_edit.setText(intent.getStringExtra(MainActivity.TITLE))
                 description_edit.setText(intent.getStringExtra(MainActivity.DESC))
                 when (intent.getStringExtra(MainActivity.PRIOR)) {
-                    "Low" -> priority_spinner.setSelection(0)
-                    "Medium" -> priority_spinner.setSelection(1)
-                    "High" -> priority_spinner.setSelection(2)
+                    "Низкий" -> priority_spinner.setSelection(0)
+                    "Средний" -> priority_spinner.setSelection(1)
+                    "Высокий" -> priority_spinner.setSelection(2)
                 }
                 when (intent.getStringExtra(MainActivity.TYPE)) {
                     good_habit.text -> good_habit.isChecked = true
@@ -63,6 +72,20 @@ class AddActivity : AppCompatActivity() {
 
             setResult(RESULT_OK, backIntent)
             finish()
+        }
+        makeColorPicker()
+    }
+
+    private fun makeColorPicker() {
+        val width = windowManager.defaultDisplay.width;
+        Log.d(SIZE_TAG, "the devise width is $width")
+        for (view in ColorPicker){
+            view.setOnClickListener { mainSquare.background = it.background }
+            view.layoutParams.width = width / 8
+            view.layoutParams.height = width / 8
+            val params = view.layoutParams as ViewGroup.MarginLayoutParams
+            params.setMargins(width / 16, width / 12, width / 16, width / 12)
+            view.layoutParams = params
         }
     }
 }
