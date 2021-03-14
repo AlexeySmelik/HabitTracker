@@ -160,6 +160,112 @@
                               android:text="@string/days"/>
                 </LinearLayout>
             </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/ColorView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/PeriodView"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:orientation="vertical">
+                <TextView android:layout_width="152dp"
+                          android:layout_height="27dp"
+                          android:layout_marginTop="18dp"
+                          android:layout_gravity="center"
+                          android:text="@string/colorText"
+                          android:gravity="center"/>
+                <View android:layout_width="@dimen/squareSide"
+                      android:layout_height="@dimen/squareSide"
+                      android:layout_gravity="center"
+                      android:background="@color/colorBlack"/>
+                <HorizontalScrollView android:layout_width="match_parent"
+                                      android:layout_height="wrap_content">
+                    <LinearLayout android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content">
+                        <View android:layout_width="@dimen/squareSide"
+                              android:layout_height="@dimen/squareSide"
+                              android:background="@color/colorBlack"
+                              android:layout_margin="@dimen/squareMargin"
+                              android:id="@+id/square1"/>
+                        <View android:layout_width="@dimen/squareSide"
+                              android:layout_height="@dimen/squareSide"
+                              android:background="@color/colorBlack"
+                              android:layout_margin="@dimen/squareMargin"
+                              android:id="@+id/square2"/>
+                        <View android:layout_width="@dimen/squareSide"
+                              android:layout_height="@dimen/squareSide"
+                              android:background="@color/colorBlack"
+                              android:layout_margin="@dimen/squareMargin"
+                              android:id="@+id/square3"/>
+                        <View android:layout_width="@dimen/squareSide"
+                              android:layout_height="@dimen/squareSide"
+                              android:background="@color/colorBlack"
+                              android:layout_margin="@dimen/squareMargin"
+                              android:id="@+id/square4"/>
+                        <View android:layout_width="@dimen/squareSide"
+                              android:layout_height="@dimen/squareSide"
+                              android:background="@color/colorBlack"
+                              android:layout_margin="@dimen/squareMargin"
+                              android:id="@+id/square5"/>
+                        <View android:layout_width="@dimen/squareSide"
+                              android:layout_height="@dimen/squareSide"
+                              android:background="@color/colorBlack"
+                              android:layout_margin="@dimen/squareMargin"
+                              android:id="@+id/square6"/>
+                        <View android:layout_width="@dimen/squareSide"
+                              android:layout_height="@dimen/squareSide"
+                              android:background="@color/colorBlack"
+                              android:layout_margin="@dimen/squareMargin"
+                              android:id="@+id/square7"/>
+                        <View android:layout_width="@dimen/squareSide"
+                              android:layout_height="@dimen/squareSide"
+                              android:background="@color/colorBlack"
+                              android:layout_margin="@dimen/squareMargin"
+                              android:id="@+id/square8"/>
+                        <View android:layout_width="@dimen/squareSide"
+                              android:layout_height="@dimen/squareSide"
+                              android:background="@color/colorBlack"
+                              android:layout_margin="@dimen/squareMargin"
+                              android:id="@+id/square9"/>
+                        <View android:layout_width="@dimen/squareSide"
+                              android:layout_height="@dimen/squareSide"
+                              android:background="@color/colorBlack"
+                              android:layout_margin="@dimen/squareMargin"
+                              android:id="@+id/square10"/>
+                        <View android:layout_width="@dimen/squareSide"
+                              android:layout_height="@dimen/squareSide"
+                              android:background="@color/colorBlack"
+                              android:layout_margin="@dimen/squareMargin"
+                              android:id="@+id/square11"/>
+                        <View android:layout_width="@dimen/squareSide"
+                              android:layout_height="@dimen/squareSide"
+                              android:background="@color/colorBlack"
+                              android:layout_margin="@dimen/squareMargin"
+                              android:id="@+id/square12"/>
+                        <View android:layout_width="@dimen/squareSide"
+                              android:layout_height="@dimen/squareSide"
+                              android:background="@color/colorBlack"
+                              android:layout_margin="@dimen/squareMargin"
+                              android:id="@+id/square13"/>
+                        <View android:layout_width="@dimen/squareSide"
+                              android:layout_height="@dimen/squareSide"
+                              android:background="@color/colorBlack"
+                              android:layout_margin="@dimen/squareMargin"
+                              android:id="@+id/square14"/>
+                        <View android:layout_width="@dimen/squareSide"
+                              android:layout_height="@dimen/squareSide"
+                              android:background="@color/colorBlack"
+                              android:layout_margin="@dimen/squareMargin"
+                              android:id="@+id/square15"/>
+                        <View android:layout_width="@dimen/squareSide"
+                              android:layout_height="@dimen/squareSide"
+                              android:background="@color/colorBlack"
+                              android:layout_margin="@dimen/squareMargin"
+                              android:id="@+id/square16"/>
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

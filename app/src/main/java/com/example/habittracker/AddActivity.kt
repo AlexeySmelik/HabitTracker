@@ -23,9 +23,11 @@ class AddActivity : AppCompatActivity() {
 
         when(intent.getStringExtra(MainActivity.ACTION)) {
             MainActivity.ADD -> {
+                setTitle("Новая привычка")
                 good_habit.isChecked = true
             }
             MainActivity.CHANGE -> {
+                setTitle("Изменить привычку")
                 title_edit.setText(intent.getStringExtra(MainActivity.TITLE))
                 description_edit.setText(intent.getStringExtra(MainActivity.DESC))
                 when (intent.getStringExtra(MainActivity.PRIOR)) {
@@ -47,8 +49,8 @@ class AddActivity : AppCompatActivity() {
             description = description_edit.text.toString()
             priority = priority_spinner.selectedItem.toString()
             habitType = if (good_habit.isChecked) good_habit.text.toString() else bad_habit.text.toString()
-            period = period_edit.text.toString()
-            quantity = quantity_edit.text.toString()
+            period = if (period_edit.text.toString() != "") period_edit.text.toString() else "1"
+            quantity = if (quantity_edit.text.toString() != "") quantity_edit.text.toString() else "1"
 
             backIntent.apply{
                 putExtra(MainActivity.TITLE, title)
@@ -58,6 +60,7 @@ class AddActivity : AppCompatActivity() {
                 putExtra(MainActivity.QUANTITY, quantity)
                 putExtra(MainActivity.PERIOD, period)
             }
+
             setResult(RESULT_OK, backIntent)
             finish()
         }

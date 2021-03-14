@@ -3,12 +3,9 @@ package com.example.habittracker
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.main_activity.*
-import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity(), OnItemClickListener {
     companion object{
@@ -21,7 +18,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         const val ACTION: String = "action"
         const val ADD: String = "add"
         const val CHANGE: String = "change"
-        const val CLICK: String = "LUCK"
+        const val CLICK: String = "ON_CLICK"
     }
 
     private lateinit var viewModel: MainActivityViewModel

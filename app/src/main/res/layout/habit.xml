@@ -5,7 +5,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/colorGray"
         android:id="@+id/habit">
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="match_parent"
@@ -13,9 +12,6 @@
                   android:orientation="vertical"
                   app:layout_constraintTop_toTopOf="parent"
                   app:layout_constraintLeft_toLeftOf="parent"
-                  android:layout_marginTop="15dp"
-                  android:layout_marginEnd="25dp"
-                  android:layout_marginStart="25dp"
                   android:background="@drawable/frame_for_list_item">
 
         <TextView android:layout_width="match_parent"
@@ -24,74 +20,84 @@
                   android:layout_marginEnd="25dp"
                   android:layout_marginStart="25dp"
                   android:layout_marginTop="15dp"
-                  android:fontFamily="sans-serif-black"
-                  android:gravity="center"
-                  android:textSize="20sp"
+                  android:textColor="@color/colorBlack"
+                  android:textSize="30sp"
                   android:text="Title"
-                  android:background="@drawable/frame_for_list_item"/>
+                  android:paddingStart="5dp"
+                  android:paddingLeft="5dp"/>
+
+        <View android:layout_width="match_parent"
+              android:layout_height="2dp"
+              android:layout_marginEnd="25dp"
+              android:layout_marginStart="25dp"
+              android:background="@color/colorBlack"/>
 
         <TextView android:layout_width="match_parent"
                   android:id="@+id/DescriptionView"
                   android:text="Description"
-                  android:layout_height="50dp"
+                  android:layout_height="wrap_content"
                   android:layout_marginEnd="25dp"
                   android:layout_marginStart="25dp"
-                  android:layout_marginTop="3dp"
-                  android:padding="5dp"
-                  android:background="@drawable/frame_for_list_item"/>
+                  android:textColor="@color/colorBlackGray"
+                  android:textSize="20sp"
+                  android:padding="5dp"/>
 
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="match_parent"
                       android:layout_marginEnd="25dp"
-                      android:layout_marginStart="25dp"
-                      android:layout_marginTop="3dp"
-                      android:background="@drawable/frame_for_list_item">
+                      android:layout_marginStart="25dp">
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:layout_margin="5dp"
-                      android:text="Приоритет: "/>
+                      android:text="Приоритет: "
+                      android:textColor="@color/colorBlackGray"
+                      android:textSize="15sp"
+                      android:padding="5dp"/>
             <TextView android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:layout_margin="5dp"
                       android:id="@+id/PriorityView"
                       android:text="Priority"
-                      android:fontFamily="sans-serif-medium"/>
+                      android:textColor="@color/colorBlackGray"
+                      android:textSize="15sp"
+                      android:padding="5dp"/>
         </LinearLayout>
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="match_parent"
                       android:layout_marginEnd="25dp"
-                      android:layout_marginStart="25dp"
-                      android:layout_marginTop="3dp"
-                      android:background="@drawable/frame_for_list_item">
+                      android:layout_marginStart="25dp">
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:layout_margin="5dp"
-                      android:text="Тип: "/>
+                      android:text="Тип: "
+                      android:textColor="@color/colorBlackGray"
+                      android:textSize="15sp"
+                      android:padding="5dp"/>
             <TextView android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:layout_margin="5dp"
                       android:id="@+id/TypeView"
                       android:text="Type"
-                      android:fontFamily="sans-serif-medium"/>
+                      android:textColor="@color/colorBlackGray"
+                      android:textSize="15sp"
+                      android:padding="5dp"/>
         </LinearLayout>
 
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="match_parent"
                       android:layout_marginEnd="25dp"
                       android:layout_marginStart="25dp"
-                      android:layout_marginBottom="15dp"
-                      android:layout_marginTop="3dp"
-                      android:background="@drawable/frame_for_list_item">
+                      android:layout_marginBottom="15dp">
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:layout_margin="5dp"
-                      android:text="Норма: "/>
+                      android:text="Норма: "
+                      android:fontFamily="@font/fanwood_text"
+                      android:textColor="@color/colorBlackGray"
+                      android:textSize="15sp"
+                      android:padding="5dp"/>
             <TextView android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:id="@+id/FrequencyView"
-                      android:layout_margin="5dp"
                       android:text="Frequency"
-                      android:fontFamily="sans-serif-medium"/>
+                      android:textColor="@color/colorBlackGray"
+                      android:textSize="15sp"
+                      android:padding="5dp"/>
         </LinearLayout>
 
     </LinearLayout>

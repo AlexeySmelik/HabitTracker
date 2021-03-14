@@ -13,9 +13,10 @@
     <string name="in">раз в</string>
     <string name="days">дней</string>
     <string name="repeat">Повторять</string>
+    <string name="colorText">Цвет</string>
     <string-array name="priorityRang">
-        <item>Low</item>
-        <item>Medium</item>
-        <item>High</item>
+        <item>Низкий</item>
+        <item>Средний</item>
+        <item>Высокий</item>
     </string-array>
 </resources>
