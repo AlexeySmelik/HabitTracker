@@ -7,4 +7,5 @@ data class Habit(
     var type: String,
     var period: String,
     var quantity: String,
+    var color: Int
     )

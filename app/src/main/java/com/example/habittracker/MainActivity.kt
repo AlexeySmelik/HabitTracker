@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         const val ADD: String = "add"
         const val CHANGE: String = "change"
         const val CLICK: String = "ON_CLICK"
+        const val COLOR: String = "color"
     }
 
     private lateinit var viewModel: MainActivityViewModel
@@ -52,6 +53,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
                 putExtra(PRIOR, habit.priority)
                 putExtra(QUANTITY, habit.quantity)
                 putExtra(PERIOD, habit.period)
+                putExtra(COLOR, habit.color)
             }
         Log.d(CLICK, "note on position num $position has been clicked")
         startActivityForResult(intent, 1)
@@ -60,28 +62,26 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         data ?: return
-        if (data.getStringExtra(ACTION) == ADD) {
+
+        val habit = Habit(data.getStringExtra(TITLE)!!,
+            data.getStringExtra(DESC)!!,
+            data.getStringExtra(PRIOR)!!,
+            data.getStringExtra(TYPE)!!,
+            data.getStringExtra(PERIOD)!!,
+            data.getStringExtra(QUANTITY)!!,
+            data.getIntExtra(COLOR, 0))
+
+        if (data.getStringExtra(ACTION) == ADD)
             if (data.getStringExtra(TITLE).isNullOrEmpty())
                 return
-            viewModel.addHabit(
-                Habit(data.getStringExtra(TITLE)!!,
-                    data.getStringExtra(DESC)!!,
-                    data.getStringExtra(PRIOR)!!,
-                    data.getStringExtra(TYPE)!!,
-                    data.getStringExtra(PERIOD)!!,
-                    data.getStringExtra(QUANTITY)!!))
-        } else {
+            else
+                viewModel.addHabit(habit)
+        else if (data.getStringExtra(ACTION) == CHANGE)
             if (data.getStringExtra(TITLE).isNullOrEmpty())
                 viewModel.removeHabit()
             else
-                viewModel.changeHabit(
-                    Habit(data.getStringExtra(TITLE)!!,
-                        data.getStringExtra(DESC)!!,
-                        data.getStringExtra(PRIOR)!!,
-                        data.getStringExtra(TYPE)!!,
-                        data.getStringExtra(PERIOD)!!,
-                        data.getStringExtra(QUANTITY)!!))
-        }
+                viewModel.changeHabit(habit)
+
         adapter.notifyDataSetChanged()
     }
 }

@@ -30,6 +30,7 @@ class HabitsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val priorityView: TextView = itemView.findViewById(R.id.PriorityView)
     private val typeView: TextView = itemView.findViewById(R.id.TypeView)
     private val frequencyView: TextView = itemView.findViewById(R.id.FrequencyView)
+    private val colorLineView: View = itemView.findViewById(R.id.ColorLineView)
 
     fun bind(habit: Habit, clickListener: OnItemClickListener, position: Int) {
         titleView.text = habit.title
@@ -37,6 +38,7 @@ class HabitsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         priorityView.text = habit.priority
         typeView.text = habit.type
         frequencyView.text = "${habit.quantity} раз в ${habit.period} дней"
+        colorLineView.setBackgroundColor(habit.color)
         itemView.setOnClickListener { clickListener.onItemClicked(habit, position) }
     }
 }
