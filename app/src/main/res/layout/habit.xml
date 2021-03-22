@@ -33,7 +33,7 @@
                   android:textSize="30sp"
                   android:text="Title"
                   android:paddingStart="5dp"
-                  android:paddingLeft="5dp"/>
+                  android:paddingEnd="5dp"/>
 
         <View android:layout_width="match_parent"
               android:layout_height="2dp"

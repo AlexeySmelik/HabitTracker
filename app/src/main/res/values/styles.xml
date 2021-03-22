@@ -5,7 +5,7 @@
         <item name="colorAccent">@color/colorBlack</item>
     </style>
 
-    <style name="MyTheme" parent="Theme.AppCompat.DayNight">
+    <style name="MyTheme" parent="Theme.AppCompat.Light">
         <item name="colorPrimary">@color/colorWhite</item>
         <item name="colorPrimaryDark">@color/colorBlack</item>
         <item name="colorAccent">@color/colorBlack</item>

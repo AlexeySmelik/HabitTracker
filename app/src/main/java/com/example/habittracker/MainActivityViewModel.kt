@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 class MainActivityViewModel : ViewModel() {
     private var habits: MutableList<Habit> = mutableListOf()
 
-   private var positionToChangeHabit: Int = -1
+    private var positionToChangeHabit: Int = -1
 
 
     fun addHabit(habit: Habit){

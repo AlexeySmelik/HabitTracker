@@ -10,17 +10,12 @@ import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : AppCompatActivity(), OnItemClickListener {
     companion object{
-        const val TITLE: String = "title"
-        const val DESC: String = "description"
-        const val PRIOR: String = "priority"
-        const val TYPE: String = "type"
-        const val PERIOD: String = "period"
-        const val QUANTITY: String = "quantity"
         const val ACTION: String = "action"
         const val ADD: String = "add"
         const val CHANGE: String = "change"
         const val CLICK: String = "ON_CLICK"
         const val COLOR: String = "color"
+        const val HABIT: String = "habit"
     }
 
     private lateinit var viewModel: MainActivityViewModel
@@ -46,14 +41,8 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         viewModel.setPositionToChangeHabit(position)
         val intent = Intent(this, AddActivity::class.java)
             .apply{
+                putExtra(HABIT, habit)
                 putExtra(ACTION, CHANGE)
-                putExtra(TITLE, habit.title)
-                putExtra(DESC, habit.description)
-                putExtra(TYPE, habit.type)
-                putExtra(PRIOR, habit.priority)
-                putExtra(QUANTITY, habit.quantity)
-                putExtra(PERIOD, habit.period)
-                putExtra(COLOR, habit.color)
             }
         Log.d(CLICK, "note on position num $position has been clicked")
         startActivityForResult(intent, 1)
@@ -62,26 +51,32 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         data ?: return
+        val habit = data.getParcelableExtra<Habit>(HABIT)!!
 
-        val habit = Habit(data.getStringExtra(TITLE)!!,
-            data.getStringExtra(DESC)!!,
-            data.getStringExtra(PRIOR)!!,
-            data.getStringExtra(TYPE)!!,
-            data.getStringExtra(PERIOD)!!,
-            data.getStringExtra(QUANTITY)!!,
-            data.getIntExtra(COLOR, 0))
+        if (data.getStringExtra(ACTION) == ADD) {
+            if (!onAddHabit(habit)) return
+        }
+        else if (data.getStringExtra(ACTION) == CHANGE) {
+            onSomeHabitWasChanged(habit)
+        }
+    }
 
-        if (data.getStringExtra(ACTION) == ADD)
-            if (data.getStringExtra(TITLE).isNullOrEmpty())
-                return
-            else
-                viewModel.addHabit(habit)
-        else if (data.getStringExtra(ACTION) == CHANGE)
-            if (data.getStringExtra(TITLE).isNullOrEmpty())
-                viewModel.removeHabit()
-            else
-                viewModel.changeHabit(habit)
+    private fun onAddHabit(habit: Habit): Boolean {
+        if (habit.title.isNullOrEmpty()) {
+            return false
+        } else {
+            viewModel.addHabit(habit)
+            adapter.notifyDataSetChanged()
+        }
+        return true
+    }
 
+    private fun onSomeHabitWasChanged(habit: Habit) {
+        if (habit.title.isNullOrEmpty()) {
+            viewModel.removeHabit()
+        } else {
+            viewModel.changeHabit(habit)
+        }
         adapter.notifyDataSetChanged()
     }
 }

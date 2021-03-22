@@ -20,12 +20,12 @@ class AddActivity : AppCompatActivity() {
     lateinit var title: String
     lateinit var description: String
     lateinit var priority: String
-    private var habitType: String = "Хорошая привычка"
     lateinit var quantity: String
     lateinit var period: String
+
+    private var habitType: String = "Хорошая привычка"
     private var color: Int = Color.BLACK
     private var colorOfSquares: MutableList<Int> = mutableListOf()
-
     private var backIntent: Intent = Intent()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,11 +35,8 @@ class AddActivity : AppCompatActivity() {
         backIntent.putExtra(MainActivity.ACTION, intent.getStringExtra(MainActivity.ACTION))
 
         when(intent.getStringExtra(MainActivity.ACTION)) {
-            MainActivity.ADD -> {
-                setTitle("Новая привычка")
-                good_habit.isChecked = true
-            }
-            MainActivity.CHANGE -> { restoreParams() }
+            MainActivity.ADD -> setDefaultParams()
+            MainActivity.CHANGE -> restoreParams()
         }
 
         submit_habit.setOnClickListener { saveHabit() }
@@ -47,49 +44,49 @@ class AddActivity : AppCompatActivity() {
         makeColorPicker()
     }
 
+    private fun setDefaultParams() {
+        setTitle("Новая привычка")
+        good_habit.isChecked = true
+    }
+
     private fun restoreParams() {
         setTitle("Изменить привычку")
-        title_edit.setText(intent.getStringExtra(MainActivity.TITLE))
-        description_edit.setText(intent.getStringExtra(MainActivity.DESC))
+        val habit = intent.getParcelableExtra<Habit>(MainActivity.HABIT)!!
 
-        when (intent.getStringExtra(MainActivity.PRIOR)) {
+        title_edit.setText(habit.title)
+        description_edit.setText(habit.description)
+
+        when (habit.priority) {
             "Низкий" -> priority_spinner.setSelection(0)
             "Средний" -> priority_spinner.setSelection(1)
             "Высокий" -> priority_spinner.setSelection(2)
         }
 
-        when (intent.getStringExtra(MainActivity.TYPE)) {
+        when (habit.type) {
             good_habit.text -> good_habit.isChecked = true
             bad_habit.text -> bad_habit.isChecked = true
         }
 
-        period_edit.setText(intent.getStringExtra(MainActivity.PERIOD))
-        quantity_edit.setText(intent.getStringExtra(MainActivity.QUANTITY))
-
-        color = intent.getIntExtra(MainActivity.COLOR, 0)
-        mainSquare.setBackgroundColor(color)
+        period_edit.setText(habit.period)
+        quantity_edit.setText(habit.quantity)
+        mainSquare.setBackgroundColor(habit.color)
     }
 
     private fun saveHabit() {
+        backIntent.apply{ putExtra(MainActivity.HABIT, makeHabit()) }
+
+        setResult(RESULT_OK, backIntent)
+        finish()
+    }
+
+    private fun makeHabit(): Habit {
         title = title_edit.text.toString()
         description = description_edit.text.toString()
         priority = priority_spinner.selectedItem.toString()
         habitType = if (good_habit.isChecked) good_habit.text.toString() else bad_habit.text.toString()
         period = if (period_edit.text.toString() != "") period_edit.text.toString() else "1"
         quantity = if (quantity_edit.text.toString() != "") quantity_edit.text.toString() else "1"
-
-        backIntent.apply{
-            putExtra(MainActivity.TITLE, title)
-            putExtra(MainActivity.DESC, description)
-            putExtra(MainActivity.PRIOR, priority)
-            putExtra(MainActivity.TYPE, habitType)
-            putExtra(MainActivity.QUANTITY, quantity)
-            putExtra(MainActivity.PERIOD, period)
-            putExtra(MainActivity.COLOR, color)
-        }
-
-        setResult(RESULT_OK, backIntent)
-        finish()
+        return Habit(title, description, priority, habitType, period, quantity, color)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
