@@ -1,5 +1,6 @@
 package com.example.habittracker
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
@@ -13,11 +14,12 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.add_or_change_habit_fragment.*
 
 interface AddOrChangeHabitCallback{
-    fun onSaveFragment(habit: Habit)
+    fun onSaveHabit(habit: Habit, fragment: AddOrChangeHabitFragment)
 }
 
 class AddOrChangeHabitFragment: Fragment() {
     companion object {
+        const val COLOR: String = "color"
         private const val ARG_INFO = "arg_info"
         private const val ARG_NAME = "arg_name"
 
@@ -33,26 +35,44 @@ class AddOrChangeHabitFragment: Fragment() {
 
     var name: String = ""
     var callback: AddOrChangeHabitCallback? = null
+
     private var color: Int = Color.BLACK
     private var colorOfSquares: MutableList<Int> = mutableListOf()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-        inflater.inflate(R.layout.add_or_change_habit_fragment, container, false)
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        callback = parentFragment as AddOrChangeHabitCallback
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
+        = inflater.inflate(R.layout.add_or_change_habit_fragment, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let {
             name = it.getString(ARG_NAME, "")
             val habit = it.getParcelable<Habit>(ARG_INFO)
-            if (habit != null)
+            if (habit != null) {
                 restoreParams(habit)
+                color = habit.color
+            }
+        }
+
+        if (savedInstanceState != null) {
+            color = savedInstanceState.getInt(COLOR)
+            mainSquare.setBackgroundColor(color)
         }
 
         submit_habit.setOnClickListener {
-            callback?.onSaveFragment(makeHabit())
+            callback?.onSaveHabit(makeHabit(), this)
         }
 
         makeColorPicker()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(COLOR, color)
     }
 
     private fun makeHabit(): Habit = Habit(

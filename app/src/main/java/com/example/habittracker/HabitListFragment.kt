@@ -8,15 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.main_fragment.*
 
-class MainFragment: Fragment(), OnItemClickListener {
+class HabitListFragment: Fragment(), OnItemClickListener, AddOrChangeHabitCallback {
     companion object{
         const val ADD: String = "add_habit"
         const val CHANGE: String = "change_habit"
 
         private const val ARG_NAME = "arg_name"
 
-        fun newInstance(name: String): MainFragment =
-            MainFragment().apply{
+        fun newInstance(name: String): HabitListFragment =
+            HabitListFragment().apply{
                 arguments = Bundle().apply{
                     putString(ARG_NAME, name)
                 }
@@ -47,35 +47,16 @@ class MainFragment: Fragment(), OnItemClickListener {
                 .beginTransaction()
                 .add(R.id.add_or_change_fragment_container, addHabitFragment)
                 .commit()
-
-            addHabitFragment.callback = object : AddOrChangeHabitCallback {
-                override fun onSaveFragment(habit: Habit) {
-                    childFragmentManager
-                        .beginTransaction()
-                        .remove(addHabitFragment)
-                        .commit()
-                    onAddHabit(habit)
-                }
-            }
         }
     }
 
     override fun onItemClicked(habit: Habit, position: Int) {
         val changeHabitFragment = AddOrChangeHabitFragment.newInstance(CHANGE, habit)
+        viewModel.setPositionToChangeHabit(position)
         childFragmentManager
             .beginTransaction()
             .add(R.id.add_or_change_fragment_container, changeHabitFragment)
             .commit()
-
-        changeHabitFragment.callback = object : AddOrChangeHabitCallback {
-            override fun onSaveFragment(habit1: Habit) {
-                childFragmentManager
-                    .beginTransaction()
-                    .remove(changeHabitFragment)
-                    .commit()
-                onChangeHabit(habit1, position)
-            }
-        }
     }
 
     private fun onAddHabit(habit: Habit){
@@ -85,12 +66,24 @@ class MainFragment: Fragment(), OnItemClickListener {
         }
     }
 
-    private fun onChangeHabit(habit: Habit, position: Int){
+    private fun onChangeHabit(habit: Habit){
         if (habit.title.isNullOrEmpty()) {
-            viewModel.removeHabit(position)
+            viewModel.removeHabit()
         } else {
-            viewModel.changeHabit(habit, position)
+            viewModel.changeHabit(habit)
         }
         adapter.notifyDataSetChanged()
+    }
+
+    override fun onSaveHabit(habit: Habit, fragment: AddOrChangeHabitFragment) {
+        when (fragment.name) {
+            ADD -> onAddHabit(habit)
+            CHANGE -> onChangeHabit(habit)
+        }
+
+        childFragmentManager
+            .beginTransaction()
+            .remove(fragment)
+            .commit()
     }
 }

@@ -5,17 +5,24 @@ import androidx.lifecycle.ViewModel
 class HabitViewModel : ViewModel() {
     private var habits: MutableList<Habit> = mutableListOf()
 
+    private var positionToChangeHabit: Int = -1
+
+
     fun addHabit(habit: Habit){
         habits.add(habit)
     }
 
     fun getHabits() : MutableList<Habit> = habits
 
-    fun changeHabit(habit: Habit, position: Int) {
-        habits[position] = habit
+    fun changeHabit(habit: Habit) {
+        habits[positionToChangeHabit] = habit
     }
 
-    fun removeHabit(position: Int) {
-        habits.removeAt(position)
+    fun removeHabit() {
+        habits.removeAt(positionToChangeHabit)
+    }
+
+    fun setPositionToChangeHabit(position: Int) {
+        positionToChangeHabit = position
     }
 }
