@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity(), HabitViewModelFromContext, AddOrChange
         habitViewModel = ViewModelProvider(this).get(HabitViewModel::class.java)
 
         navController = findNavController(R.id.nav_host_fragment)
-        appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
+        appBarConfiguration = AppBarConfiguration.Builder(navController.graph).setDrawerLayout(drawerLayout).build()
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
