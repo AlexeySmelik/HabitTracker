@@ -1,5 +1,6 @@
 package com.example.habittracker
 
+import AddOrChangeHabitCallback
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -9,10 +10,13 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.habittracker.interfaces.HabitViewModelFromContext
+import com.example.habittracker.interfaces.OnAddButtonClickListener
+import com.example.habittracker.interfaces.OnItemClickListener
 import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : AppCompatActivity(), HabitViewModelFromContext, AddOrChangeHabitCallback, OnItemClickListener,
-OnAddButtonClickedListener {
+    OnAddButtonClickListener {
     companion object {
         private const val ARG_NAME = "arg_name"
         private const val ADD: String = "add_habit"
@@ -36,8 +40,7 @@ OnAddButtonClickedListener {
         navView.setupWithNavController(navController)
     }
 
-    override fun onSupportNavigateUp() =
-        navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    override fun onSupportNavigateUp() = navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
 
     override fun getHabitViewModel(type: String) : HabitViewModel = habitViewModel
 

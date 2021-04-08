@@ -1,22 +1,19 @@
-package com.example.habittracker
+package com.example.habittracker.fragments
 
+import AddOrChangeHabitCallback
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
-import android.os.Parcelable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
+import com.example.habittracker.Habit
+import com.example.habittracker.R
 import kotlinx.android.synthetic.main.add_or_change_habit_fragment.*
-
-interface AddOrChangeHabitCallback{
-    fun onSaveHabit(habit: Habit, fragmentName: String)
-}
 
 class AddOrChangeHabitFragment: Fragment() {
     companion object {

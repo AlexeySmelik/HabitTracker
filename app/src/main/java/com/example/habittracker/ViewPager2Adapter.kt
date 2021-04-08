@@ -2,9 +2,10 @@ package com.example.habittracker
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.habittracker.fragments.HabitRecyclerViewFragment
 import java.lang.Exception
 
-class ViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment)  {
+class ViewPager2Adapter(fragment: Fragment) : FragmentStateAdapter(fragment)  {
     override fun getItemCount(): Int = 2
 
     override fun createFragment(position: Int): Fragment = when (position) {

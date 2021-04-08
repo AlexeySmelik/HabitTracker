@@ -1,16 +1,15 @@
-package com.example.habittracker
+package com.example.habittracker.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.habittracker.R
+import com.example.habittracker.ViewPager2Adapter
+import com.example.habittracker.interfaces.OnAddButtonClickListener
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.habits_view_pager2_fragment.*
-
-interface OnAddButtonClickedListener {
-    fun onAddButtonClicked()
-}
 
 class HabitsViewPager2Fragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
@@ -18,7 +17,7 @@ class HabitsViewPager2Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewPager2.adapter = ViewPagerAdapter(this)
+        viewPager2.adapter = ViewPager2Adapter(this)
         TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
             tab.text = resources.getString(
                 when (position) {
@@ -28,6 +27,6 @@ class HabitsViewPager2Fragment : Fragment() {
                 }
             )
         }.attach()
-        add_habit.setOnClickListener{ (context as OnAddButtonClickedListener).onAddButtonClicked() }
+        add_habit.setOnClickListener{ (context as OnAddButtonClickListener).onAddButtonClicked() }
     }
 }

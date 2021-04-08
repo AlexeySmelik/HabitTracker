@@ -1,16 +1,17 @@
-package com.example.habittracker
+package com.example.habittracker.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.habittracker.Habit
+import com.example.habittracker.HabitViewModel
+import com.example.habittracker.HabitsAdapter
+import com.example.habittracker.R
+import com.example.habittracker.interfaces.HabitViewModelFromContext
+import com.example.habittracker.interfaces.OnItemClickListener
 import kotlinx.android.synthetic.main.habits_recycler_view_fragment.*
-
-interface HabitViewModelFromContext{
-    fun getHabitViewModel(type: String): HabitViewModel
-}
 
 class HabitRecyclerViewFragment : Fragment(){
     companion object{

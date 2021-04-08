@@ -7,19 +7,19 @@
 
     <fragment
             android:id="@+id/habitsViewPager2Fragment"
-            android:name="com.example.habittracker.HabitsViewPager2Fragment"
+            android:name="com.example.habittracker.fragments.HabitsViewPager2Fragment"
             tools:layout="@layout/habits_recycler_view_fragment">
     </fragment>
 
     <fragment
             android:id="@+id/addOrChangeFragment"
-            android:name="com.example.habittracker.AddOrChangeHabitFragment"
+            android:name="com.example.habittracker.fragments.AddOrChangeHabitFragment"
             tools:layout="@layout/add_or_change_habit_fragment">
     </fragment>
 
     <fragment
             android:id="@+id/informationAboutAppFragment"
-            android:name="com.example.habittracker.InformationAboutAppFragment"
+            android:name="com.example.habittracker.fragments.InformationAboutAppFragment"
             tools:layout="@layout/information_about_app_fragment">
     </fragment>
 </navigation>

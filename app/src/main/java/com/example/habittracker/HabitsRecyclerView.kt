@@ -5,11 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-
-
-interface OnItemClickListener {
-    fun onItemClicked(habit: Habit, position: Int)
-}
+import com.example.habittracker.interfaces.OnItemClickListener
 
 class HabitsAdapter(private var habits: MutableList<Habit>, private val itemClickListener: OnItemClickListener) : RecyclerView.Adapter<HabitsViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HabitsViewHolder {
