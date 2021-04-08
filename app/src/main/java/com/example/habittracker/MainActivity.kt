@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -54,8 +53,8 @@ OnAddButtonClickedListener {
         habitViewModel.changeHabit(habit)
     }
 
-    override fun onSaveHabit(habit: Habit, fragment: AddOrChangeHabitFragment) {
-        when (fragment.name) {
+    override fun onSaveHabit(habit: Habit, fragmentName: String) {
+        when (fragmentName) {
             ADD -> onAddHabit(habit)
             CHANGE -> onChangeHabit(habit)
         }

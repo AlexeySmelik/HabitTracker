@@ -25,7 +25,6 @@ class HabitRecyclerViewFragment : Fragment(){
     }
 
     private lateinit var viewModel: HabitViewModel
-    private lateinit var adapter: HabitsAdapter
     private var habitsOfCertainType = arrayListOf<Habit>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
@@ -33,12 +32,10 @@ class HabitRecyclerViewFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val type = arguments?.getString(HABIT_TYPE)
         viewModel= (context as HabitViewModelFromContext).getHabitViewModel(type!!)
-
-        habitsOfCertainType = ArrayList(viewModel.getHabits().filter { habit -> habit.type == type })
-        adapter = HabitsAdapter(habitsOfCertainType, context as OnItemClickListener)
-        listOfHabits.adapter = adapter
-        listOfHabits.layoutManager = LinearLayoutManager(this.context)
+        habitsOfCertainType = ArrayList(viewModel.getHabits().filter{ habit -> habit.type == type })
+        listOfHabits.adapter = HabitsAdapter(habitsOfCertainType, context as OnItemClickListener)
     }
 }

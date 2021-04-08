@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +15,7 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.add_or_change_habit_fragment.*
 
 interface AddOrChangeHabitCallback{
-    fun onSaveHabit(habit: Habit, fragment: AddOrChangeHabitFragment)
+    fun onSaveHabit(habit: Habit, fragmentName: String)
 }
 
 class AddOrChangeHabitFragment: Fragment() {
@@ -54,7 +55,7 @@ class AddOrChangeHabitFragment: Fragment() {
             mainSquare.setBackgroundColor(color)
         }
 
-        submit_habit.setOnClickListener { callback?.onSaveHabit(makeHabit(), this) }
+        submit_habit.setOnClickListener { callback?.onSaveHabit(makeHabit(), name) }
 
         makeColorPicker()
     }
