@@ -3,6 +3,7 @@ package com.example.habittracker
 import AddOrChangeHabitCallback
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity(), HabitViewModelFromContext, AddOrChange
         habitViewModel = ViewModelProvider(this).get(HabitViewModel::class.java)
 
         navController = findNavController(R.id.nav_host_fragment)
-        appBarConfiguration = AppBarConfiguration.Builder(navController.graph).setDrawerLayout(drawerLayout).build()
+        appBarConfiguration = AppBarConfiguration.Builder(setOf(R.id.habitsViewPager2Fragment, R.id.informationAboutAppFragment)).setOpenableLayout(drawerLayout).build()
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
