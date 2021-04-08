@@ -22,15 +22,6 @@ class AddOrChangeHabitFragment: Fragment() {
         const val COLOR: String = "color"
         private const val ARG_INFO = "arg_info"
         private const val ARG_NAME = "arg_name"
-
-        fun newInstance(name: String, info: Parcelable? = null): AddOrChangeHabitFragment =
-            AddOrChangeHabitFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_NAME, name)
-                    if (info != null)
-                        putParcelable(ARG_INFO, info)
-                }
-            }
     }
 
     var name: String = ""
@@ -41,7 +32,7 @@ class AddOrChangeHabitFragment: Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        callback = parentFragment as AddOrChangeHabitCallback
+        callback = context as AddOrChangeHabitCallback
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
@@ -63,9 +54,7 @@ class AddOrChangeHabitFragment: Fragment() {
             mainSquare.setBackgroundColor(color)
         }
 
-        submit_habit.setOnClickListener {
-            callback?.onSaveHabit(makeHabit(), this)
-        }
+        submit_habit.setOnClickListener { callback?.onSaveHabit(makeHabit(), this) }
 
         makeColorPicker()
     }

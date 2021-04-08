@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/habitsViewPager2Fragment"
+              android:title="@string/menu_home"
+              android:icon="@drawable/baseline_home_black_48"/>
+        <item android:id="@+id/informationAboutAppFragment"
+              android:title="@string/menu_info_about_app"
+              android:icon="@drawable/baseline_help_outline_black_48"/>
+    </group>
+</menu>
